@@ -1,0 +1,19 @@
+version: "3.0"
+services:
+  pg:
+    image: postgres:15.2
+    environment:
+      - "POSTGRES_PASSWORD=mysecretpassword"
+    ports:
+      - "5454:5432"
+  teamify:
+    image: justflick/teamify
+    depends_on:
+      - pg
+    ports:
+      - "8080:8080"
+    environment:
+      - "DB_URL=jdbc:postgresql://pg:5432/"
+      - "DB_USER=postgres"
+      - "DB_PASS=mysecretpassword"
+
