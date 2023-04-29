@@ -18,6 +18,11 @@ public class UserController {
         return userService.getUser(id);
     }
 
+    @GetMapping()
+    public User getUserByUsername(@RequestParam String username){
+        return userService.getUser(username);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody CreateUserRequest createUserRequest){

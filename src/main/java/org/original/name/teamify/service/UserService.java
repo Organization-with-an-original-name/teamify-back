@@ -19,6 +19,11 @@ public class UserService {
                 .orElseThrow(() -> new TeamifyException("User with id specified does not exist"));
     }
 
+    public User getUser(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new TeamifyException("User with id specified does not exist"));
+    }
+
     public User createUser(CreateUserRequest createUserRequest) {
         if (userRepository.existsByUsername(createUserRequest.getUsername())) {
             throw new TeamifyException("User with such username already exists");
@@ -28,6 +33,5 @@ public class UserService {
         userRepository.save(user);
         return user;
     }
-
 
 }
