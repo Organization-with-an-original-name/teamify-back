@@ -5,10 +5,10 @@ import org.original.name.teamify.dto.CreateTeamRequest;
 import org.original.name.teamify.dto.TeamDto;
 import org.original.name.teamify.service.TeamService;
 import org.springframework.web.bind.annotation.*;
-import org.original.name.teamify.model.Team;
 @RestController
 @RequestMapping("/team")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class TeamController {
     private final TeamService teamService;
 
