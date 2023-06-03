@@ -21,16 +21,17 @@ public class User {
     private String username;
     private String firstName;
     private String lastName;
+    private String location;
+    private String password;
     private boolean lookingForTeam;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Contact> contacts = new ArrayList<>();
+    @ManyToMany()
+    private List<Skill> skills = new ArrayList<>();
 
     public void addContact(Contact contact){
         contacts.add(contact);
         contact.setUser(this);
     }
-//    private String location;
-//    private String summary;
-//    private Set<Skill> skills;
 
 }

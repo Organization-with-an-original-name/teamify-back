@@ -1,6 +1,5 @@
 package org.original.name.teamify.dto;
 
-import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 import org.original.name.teamify.model.User;
@@ -18,5 +17,6 @@ public class UserDto {
     private String username;
     private String firstName;
     private String lastName;
+    private String location;
     private boolean lookingForTeam;
 }
