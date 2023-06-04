@@ -8,23 +8,24 @@ import org.original.name.teamify.model.User;
 import org.original.name.teamify.repository.TeamRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 @Service
 @RequiredArgsConstructor
 public class TeamService {
     private final TeamRepository teamRepository;
-    private final UserService userService;
+    private final IdentityService identityService;
 
     public Team getById(Long id) {
         return teamRepository.findById(id)
                 .orElseThrow(() -> new TeamifyException("Team with id " + id + " does not exists"));
     }
 
-    public Team createTeam(CreateTeamRequest createTeamRequest) {
+    public Team createTeam(CreateTeamRequest createTeamRequest, String token) {
+        User leader = identityService.currentUser(token);
         if (teamRepository.existsByName(createTeamRequest.getName())) {
-            throw new TeamifyException("Team with name " + createTeamRequest + " already exists");
+            throw new TeamifyException("Team with name " + createTeamRequest.getName() + " already exists");
         }
-        User leader = userService.getUser(createTeamRequest.getLeaderId());
         Team team = new Team();
 
         BeanUtils.copyProperties(createTeamRequest, team);

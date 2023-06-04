@@ -1,5 +1,6 @@
 package org.original.name.teamify.controller;
 
+import io.swagger.v3.oas.annotations.headers.Header;
 import lombok.RequiredArgsConstructor;
 import org.original.name.teamify.dto.CreateTeamRequest;
 import org.original.name.teamify.dto.TeamDto;
@@ -18,7 +19,7 @@ public class TeamController {
     }
 
     @PostMapping
-    public TeamDto createTeam(@RequestBody CreateTeamRequest createTeamRequest){
-        return TeamDto.ofTeam(teamService.createTeam(createTeamRequest));
+    public TeamDto createTeam(@RequestBody CreateTeamRequest createTeamRequest, @RequestHeader("Access-token")String token){
+        return TeamDto.ofTeam(teamService.createTeam(createTeamRequest, token));
     }
 }
