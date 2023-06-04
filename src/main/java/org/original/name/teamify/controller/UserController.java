@@ -24,7 +24,7 @@ public class UserController {
         return UserDto.ofUser(userService.getUser(userId));
     }
 
-    @GetMapping()
+    @GetMapping("/current")
     public UserDto getCurrentUser(@RequestHeader("Access-token") String token) {
         return UserDto.ofUser(identityService.currentUser(token));
     }

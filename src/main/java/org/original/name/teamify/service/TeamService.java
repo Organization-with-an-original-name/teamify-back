@@ -8,13 +8,14 @@ import org.original.name.teamify.model.User;
 import org.original.name.teamify.repository.TeamRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestHeader;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class TeamService {
     private final TeamRepository teamRepository;
     private final IdentityService identityService;
+    private final UserService userService;
 
     public Team getById(Long id) {
         return teamRepository.findById(id)
@@ -35,4 +36,12 @@ public class TeamService {
         return team;
     }
 
+    public List<Team> getAllTeams() {
+        return teamRepository.findAll();
+    }
+
+    public List<Team> getByLeaderId(Long leaderId) {
+        User leader = userService.getUser(leaderId);
+        return teamRepository.findAllByLeader(leader);
+    }
 }
