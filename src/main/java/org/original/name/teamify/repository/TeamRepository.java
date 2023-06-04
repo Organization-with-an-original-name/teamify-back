@@ -1,6 +1,5 @@
 package org.original.name.teamify.repository;
 
-import org.original.name.teamify.dto.TeamDto;
 import org.original.name.teamify.model.Team;
 import org.original.name.teamify.model.User;
 import org.springframework.data.repository.CrudRepository;
