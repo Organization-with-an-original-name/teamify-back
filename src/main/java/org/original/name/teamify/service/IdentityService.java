@@ -33,7 +33,7 @@ public class IdentityService {
 
     public User currentUser(String token) {
         var user = authenticatedUsers.get(token);
-        if (token == null) {
+        if (user == null) {
             throw new UnauthenticatedException();
         }
         lastAccessed.put(token, LocalDateTime.now());
